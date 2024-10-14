@@ -1,26 +1,42 @@
 package com.example;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
 public class InsertionSort {
+    private static int count = 0;
+
+  // Get array of cupcake names
+    public static String[] nameArray(JSONArray cupcakeArray) {
+        String[] arr = new String[cupcakeArray.size()];
+
+        // Get names from JSON objects
+        for (int i = 0; i < cupcakeArray.size(); i++) {
+            JSONObject o = (JSONObject) cupcakeArray.get(i);
+            String name = (String) o.get("name");
+            arr[i] = name;
+        }
+        return arr;
+    }
 
     public static void main(String[] args) {
-        int[] arr = { 12, 11, 13, 5, 6, 1, 10, 22, 3 };
-        int n = arr.length;
-
-        //insert sort operation
-        for (int i = 1; i < n; ++i) {
-            int key = arr[i];
-            int j = i - 1;
-
-            while (j >= 0 && arr[j] > key) {
-                arr[j + 1] = arr[j];
-                j = j - 1;
-            }
-            arr[j + 1] = key;
-        }
+        String fileName = "cupcake_3906.json";
         
-        //print sorted array
-        for (int i = 0; i < n; ++i)
-            System.out.print(arr[i] + " ");
-        System.out.println();
+        // Read cupcake names
+        JSONArray cupcakeArray = JSONFile.readArray(fileName);
+        String[] cupcakeNameArray = nameArray(cupcakeArray);
+        
+        // Print unsorted list
+        System.out.println("----- Unsorted array -----");
+        print(cupcakeNameArray);
+    }
+    
+     // Print cupcake array
+     public static void print(String[] cupcakeNameArray) {
+        System.out.printf("Number\tName\n");
+        System.out.printf("------\t---------------\n");
+        for (int i = 0; i < cupcakeNameArray.length; i++) {
+            System.out.printf("%04d\t%s\n", i, cupcakeNameArray[i]);
+        }
     }
 }
