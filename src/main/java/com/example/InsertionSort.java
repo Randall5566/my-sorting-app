@@ -2,9 +2,11 @@ package com.example;
 
 public class InsertionSort {
 
-    /* This function sorts an array using insertion sort */
-    public static void insertionSort(int[] arr) {
+    public static void main(String[] args) {
+        int[] arr = { 12, 11, 13, 5, 6, 1, 10, 22, 3 };
         int n = arr.length;
+
+        //insert sort operation
         for (int i = 1; i < n; ++i) {
             int key = arr[i];
             int j = i - 1;
@@ -14,20 +16,11 @@ public class InsertionSort {
                 j = j - 1;
             }
             arr[j + 1] = key;
-            System.out.println(arr[0]);
-            System.out.println(arr[1]);
-            System.out.println(arr[2]);
-            System.out.println(arr[3]);
         }
-    }
-
-
-    public static void main(String[] args) {
-        int[] arr = { 12, 11, 13, 5, 6 };
-
-        // Call insertion sort
-        insertionSort(arr);
-
         
+        //print sorted array
+        for (int i = 0; i < n; ++i)
+            System.out.print(arr[i] + " ");
+        System.out.println();
     }
 }
